@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b733e6dc6e4844cda76d523913e87819" Name="Diagram1" >
+        <EntityTypeShape EntityType="TimeTracks.User" Width="1.5" PointX="4.375" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTracks.Company" Width="1.5" PointX="2.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTracks.Adderess" Width="1.5" PointX="6.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTracks.PhoneNumber" Width="1.5" PointX="4.625" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTracks.Location" Width="1.5" PointX="2.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTracks.Job" Width="1.5" PointX="11" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTracks.Device" Width="1.5" PointX="6.375" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTracks.Note" Width="1.5" PointX="8.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTracks.Account" Width="1.5" PointX="0.5" PointY="0.625" IsExpanded="true" />
+        <AssociationConnector Association="TimeTracks.AccountCompany" />
+        <AssociationConnector Association="TimeTracks.AccountUser" />
+        <AssociationConnector Association="TimeTracks.LocationAdderess" />
+        <AssociationConnector Association="TimeTracks.LocationPhoneNumber" />
+        <AssociationConnector Association="TimeTracks.CompanyLocation" />
+        <AssociationConnector Association="TimeTracks.AdderessCompany" />
+        <AssociationConnector Association="TimeTracks.CompanyPhoneNumber" />
+        <AssociationConnector Association="TimeTracks.UserPhoneNumber" />
+        <AssociationConnector Association="TimeTracks.UserDevice" />
+        <EntityTypeShape EntityType="TimeTracks.Expense" Width="1.5" PointX="10.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTracks.Commission" Width="1.5" PointX="10.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTracks.Punch" Width="1.5" PointX="8.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTracks.Contract" Width="1.5" PointX="13" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTracks.Draw" Width="1.5" PointX="10.75" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="TimeTracks.JobNote" />
+        <AssociationConnector Association="TimeTracks.ContractDraw" />
+        <EntityTypeShape EntityType="TimeTracks.Task" Width="1.5" PointX="13" PointY="6.625" />
+        <EntityTypeShape EntityType="TimeTracks.Call" Width="1.5" PointX="11" PointY="7.625" />
+        <InheritanceConnector EntityType="TimeTracks.Call" />
+        <InheritanceConnector EntityType="TimeTracks.Task" />
+        <EntityTypeShape EntityType="TimeTracks.PayOut" Width="1.5" PointX="8.75" PointY="0.5" />
+        <InheritanceConnector EntityType="TimeTracks.Expense" />
+        <InheritanceConnector EntityType="TimeTracks.Commission" />
+        <InheritanceConnector EntityType="TimeTracks.Draw" />
+        <AssociationConnector Association="TimeTracks.UserPayOut" />
+        <AssociationConnector Association="TimeTracks.LocationJob" />
+        <AssociationConnector Association="TimeTracks.PunchNote" />
+        <InheritanceConnector EntityType="TimeTracks.Contract" />
+        <AssociationConnector Association="TimeTracks.JobPunch" />
+        <AssociationConnector Association="TimeTracks.CompanyPunch" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

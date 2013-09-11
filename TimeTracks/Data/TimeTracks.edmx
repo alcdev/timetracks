@@ -1,0 +1,1206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TimeTracks.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="TimeTracksStoreContainer">
+    <EntitySet Name="Users" EntityType="TimeTracks.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Companies" EntityType="TimeTracks.Store.Companies" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Adderesses" EntityType="TimeTracks.Store.Adderesses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PhoneNumbers" EntityType="TimeTracks.Store.PhoneNumbers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Locations" EntityType="TimeTracks.Store.Locations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Jobs" EntityType="TimeTracks.Store.Jobs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Devices" EntityType="TimeTracks.Store.Devices" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Notes" EntityType="TimeTracks.Store.Notes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Accounts" EntityType="TimeTracks.Store.Accounts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Punches" EntityType="TimeTracks.Store.Punches" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PayOuts" EntityType="TimeTracks.Store.PayOuts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Jobs_Contract" EntityType="TimeTracks.Store.Jobs_Contract" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PayOuts_Draw" EntityType="TimeTracks.Store.PayOuts_Draw" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PayOuts_Expense" EntityType="TimeTracks.Store.PayOuts_Expense" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PayOuts_Commission" EntityType="TimeTracks.Store.PayOuts_Commission" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Jobs_Task" EntityType="TimeTracks.Store.Jobs_Task" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Jobs_Call" EntityType="TimeTracks.Store.Jobs_Call" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="AccountCompany" Association="TimeTracks.Store.AccountCompany">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Company" EntitySet="Companies" />
+    </AssociationSet>
+    <AssociationSet Name="AccountUser" Association="TimeTracks.Store.AccountUser">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="LocationAdderess" Association="TimeTracks.Store.LocationAdderess">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="Adderess" EntitySet="Adderesses" />
+    </AssociationSet>
+    <AssociationSet Name="LocationPhoneNumber" Association="TimeTracks.Store.LocationPhoneNumber">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="PhoneNumber" EntitySet="PhoneNumbers" />
+    </AssociationSet>
+    <AssociationSet Name="CompanyLocation" Association="TimeTracks.Store.CompanyLocation">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="Location" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="AdderessCompany" Association="TimeTracks.Store.AdderessCompany">
+      <End Role="Adderess" EntitySet="Adderesses" />
+      <End Role="Company" EntitySet="Companies" />
+    </AssociationSet>
+    <AssociationSet Name="CompanyPhoneNumber" Association="TimeTracks.Store.CompanyPhoneNumber">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="PhoneNumber" EntitySet="PhoneNumbers" />
+    </AssociationSet>
+    <AssociationSet Name="UserPhoneNumber" Association="TimeTracks.Store.UserPhoneNumber">
+      <End Role="User" EntitySet="Users" />
+      <End Role="PhoneNumber" EntitySet="PhoneNumbers" />
+    </AssociationSet>
+    <AssociationSet Name="UserDevice" Association="TimeTracks.Store.UserDevice">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Device" EntitySet="Devices" />
+    </AssociationSet>
+    <AssociationSet Name="JobNote" Association="TimeTracks.Store.JobNote">
+      <End Role="Job" EntitySet="Jobs" />
+      <End Role="Note" EntitySet="Notes" />
+    </AssociationSet>
+    <AssociationSet Name="ContractDraw" Association="TimeTracks.Store.ContractDraw">
+      <End Role="Contract" EntitySet="Jobs_Contract" />
+      <End Role="Draw" EntitySet="PayOuts_Draw" />
+    </AssociationSet>
+    <AssociationSet Name="UserPayOut" Association="TimeTracks.Store.UserPayOut">
+      <End Role="User" EntitySet="Users" />
+      <End Role="PayOut" EntitySet="PayOuts" />
+    </AssociationSet>
+    <AssociationSet Name="LocationJob" Association="TimeTracks.Store.LocationJob">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="Job" EntitySet="Jobs" />
+    </AssociationSet>
+    <AssociationSet Name="PunchNote" Association="TimeTracks.Store.PunchNote">
+      <End Role="Punch" EntitySet="Punches" />
+      <End Role="Note" EntitySet="Notes" />
+    </AssociationSet>
+    <AssociationSet Name="JobPunch" Association="TimeTracks.Store.JobPunch">
+      <End Role="Job" EntitySet="Jobs" />
+      <End Role="Punch" EntitySet="Punches" />
+    </AssociationSet>
+    <AssociationSet Name="CompanyPunch" Association="TimeTracks.Store.CompanyPunch">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="Punch" EntitySet="Punches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contract_inherits_Job" Association="TimeTracks.Store.FK_Contract_inherits_Job">
+      <End Role="Job" EntitySet="Jobs" />
+      <End Role="Contract" EntitySet="Jobs_Contract" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Draw_inherits_PayOut" Association="TimeTracks.Store.FK_Draw_inherits_PayOut">
+      <End Role="PayOut" EntitySet="PayOuts" />
+      <End Role="Draw" EntitySet="PayOuts_Draw" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Expense_inherits_PayOut" Association="TimeTracks.Store.FK_Expense_inherits_PayOut">
+      <End Role="PayOut" EntitySet="PayOuts" />
+      <End Role="Expense" EntitySet="PayOuts_Expense" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Commission_inherits_PayOut" Association="TimeTracks.Store.FK_Commission_inherits_PayOut">
+      <End Role="PayOut" EntitySet="PayOuts" />
+      <End Role="Commission" EntitySet="PayOuts_Commission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_inherits_Job" Association="TimeTracks.Store.FK_Task_inherits_Job">
+      <End Role="Job" EntitySet="Jobs" />
+      <End Role="Task" EntitySet="Jobs_Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Call_inherits_Job" Association="TimeTracks.Store.FK_Call_inherits_Job">
+      <End Role="Job" EntitySet="Jobs" />
+      <End Role="Call" EntitySet="Jobs_Call" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="15" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Role" Type="int" Nullable="false" />
+    <Property Name="PayRate" Type="decimal" Nullable="true" Precision="19" Scale="4" />
+    <Property Name="PayInterval" Type="int" Nullable="true" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="ASPid" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Account_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Companies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Account_Id" Type="int" Nullable="false" />
+    <Property Name="Adderess_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Adderesses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StreetAdderess" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Suite" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="State" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ZipCode" Type="int" Nullable="false" />
+    <Property Name="Primary" Type="bit" Nullable="true" />
+    <Property Name="Country" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="PhoneNumbers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AreaCode" Type="int" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Extension" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Primary" Type="bit" Nullable="true" />
+    <Property Name="Location_Id" Type="int" Nullable="true" />
+    <Property Name="Company_Id" Type="int" Nullable="true" />
+    <Property Name="User_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Adderess_Id" Type="int" Nullable="false" />
+    <Property Name="Company_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StartDateTime" Type="datetime" Nullable="false" />
+    <Property Name="EndDateTime" Type="datetime" Nullable="false" />
+    <Property Name="Complete" Type="bit" Nullable="false" />
+    <Property Name="Location_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Devices">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Serial" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="UID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Owner" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+    <Property Name="Job_Id" Type="int" Nullable="false" />
+    <Property Name="Punch_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="WeekStart" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Punches">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="PunchIn" Type="datetime" Nullable="false" />
+    <Property Name="PunchOut" Type="datetime" Nullable="true" />
+    <Property Name="PunchedInBy" Type="int" Nullable="false" />
+    <Property Name="PunchedOutBy" Type="int" Nullable="true" />
+    <Property Name="Verified" Type="bit" Nullable="true" />
+    <Property Name="VerifiedBy" Type="int" Nullable="true" />
+    <Property Name="Job_Id" Type="int" Nullable="false" />
+    <Property Name="Company_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PayOuts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="EnteredBy" Type="int" Nullable="false" />
+    <Property Name="Approved" Type="bit" Nullable="false" />
+    <Property Name="ApprovedBy" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobs_Contract">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="ContractPrice" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PayOuts_Draw">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Contract_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PayOuts_Expense">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PayOuts_Commission">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobs_Task">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Priority" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobs_Call">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="AllotedTime" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="AccountCompany">
+    <End Role="Account" Type="TimeTracks.Store.Accounts" Multiplicity="1" />
+    <End Role="Company" Type="TimeTracks.Store.Companies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="Account_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AccountUser">
+    <End Role="Account" Type="TimeTracks.Store.Accounts" Multiplicity="1" />
+    <End Role="User" Type="TimeTracks.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Account_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LocationAdderess">
+    <End Role="Location" Type="TimeTracks.Store.Locations" Multiplicity="*" />
+    <End Role="Adderess" Type="TimeTracks.Store.Adderesses" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Adderess">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="Adderess_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LocationPhoneNumber">
+    <End Role="Location" Type="TimeTracks.Store.Locations" Multiplicity="0..1" />
+    <End Role="PhoneNumber" Type="TimeTracks.Store.PhoneNumbers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PhoneNumber">
+        <PropertyRef Name="Location_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CompanyLocation">
+    <End Role="Company" Type="TimeTracks.Store.Companies" Multiplicity="1" />
+    <End Role="Location" Type="TimeTracks.Store.Locations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="Company_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AdderessCompany">
+    <End Role="Adderess" Type="TimeTracks.Store.Adderesses" Multiplicity="1" />
+    <End Role="Company" Type="TimeTracks.Store.Companies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adderess">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="Adderess_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CompanyPhoneNumber">
+    <End Role="Company" Type="TimeTracks.Store.Companies" Multiplicity="0..1" />
+    <End Role="PhoneNumber" Type="TimeTracks.Store.PhoneNumbers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PhoneNumber">
+        <PropertyRef Name="Company_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserPhoneNumber">
+    <End Role="User" Type="TimeTracks.Store.Users" Multiplicity="0..1" />
+    <End Role="PhoneNumber" Type="TimeTracks.Store.PhoneNumbers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PhoneNumber">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserDevice">
+    <End Role="User" Type="TimeTracks.Store.Users" Multiplicity="1" />
+    <End Role="Device" Type="TimeTracks.Store.Devices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Device">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="JobNote">
+    <End Role="Job" Type="TimeTracks.Store.Jobs" Multiplicity="1" />
+    <End Role="Note" Type="TimeTracks.Store.Notes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Note">
+        <PropertyRef Name="Job_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ContractDraw">
+    <End Role="Contract" Type="TimeTracks.Store.Jobs_Contract" Multiplicity="1" />
+    <End Role="Draw" Type="TimeTracks.Store.PayOuts_Draw" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contract">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Draw">
+        <PropertyRef Name="Contract_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserPayOut">
+    <End Role="User" Type="TimeTracks.Store.Users" Multiplicity="1" />
+    <End Role="PayOut" Type="TimeTracks.Store.PayOuts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PayOut">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LocationJob">
+    <End Role="Location" Type="TimeTracks.Store.Locations" Multiplicity="1" />
+    <End Role="Job" Type="TimeTracks.Store.Jobs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Job">
+        <PropertyRef Name="Location_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PunchNote">
+    <End Role="Punch" Type="TimeTracks.Store.Punches" Multiplicity="1" />
+    <End Role="Note" Type="TimeTracks.Store.Notes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Punch">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Note">
+        <PropertyRef Name="Punch_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="JobPunch">
+    <End Role="Job" Type="TimeTracks.Store.Jobs" Multiplicity="1" />
+    <End Role="Punch" Type="TimeTracks.Store.Punches" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Punch">
+        <PropertyRef Name="Job_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CompanyPunch">
+    <End Role="Company" Type="TimeTracks.Store.Companies" Multiplicity="1" />
+    <End Role="Punch" Type="TimeTracks.Store.Punches" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Punch">
+        <PropertyRef Name="Company_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contract_inherits_Job">
+    <End Role="Job" Type="TimeTracks.Store.Jobs" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Contract" Type="TimeTracks.Store.Jobs_Contract" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contract">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Draw_inherits_PayOut">
+    <End Role="PayOut" Type="TimeTracks.Store.PayOuts" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Draw" Type="TimeTracks.Store.PayOuts_Draw" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PayOut">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Draw">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Expense_inherits_PayOut">
+    <End Role="PayOut" Type="TimeTracks.Store.PayOuts" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Expense" Type="TimeTracks.Store.PayOuts_Expense" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PayOut">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Expense">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Commission_inherits_PayOut">
+    <End Role="PayOut" Type="TimeTracks.Store.PayOuts" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Commission" Type="TimeTracks.Store.PayOuts_Commission" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PayOut">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Commission">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_inherits_Job">
+    <End Role="Job" Type="TimeTracks.Store.Jobs" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Task" Type="TimeTracks.Store.Jobs_Task" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Call_inherits_Job">
+    <End Role="Job" Type="TimeTracks.Store.Jobs" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Call" Type="TimeTracks.Store.Jobs_Call" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Call">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="TimeTracks" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="TimeTracksContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="TimeTracks.User" />
+          <EntitySet Name="Companies" EntityType="TimeTracks.Company" />
+          <EntitySet Name="Adderesses" EntityType="TimeTracks.Adderess" />
+          <EntitySet Name="PhoneNumbers" EntityType="TimeTracks.PhoneNumber" />
+          <EntitySet Name="Locations" EntityType="TimeTracks.Location" />
+          <EntitySet Name="Jobs" EntityType="TimeTracks.Job" />
+          <EntitySet Name="Devices" EntityType="TimeTracks.Device" />
+          <EntitySet Name="Notes" EntityType="TimeTracks.Note" />
+          <EntitySet Name="Accounts" EntityType="TimeTracks.Account" />
+          <AssociationSet Name="AccountCompany" Association="TimeTracks.AccountCompany">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="AccountUser" Association="TimeTracks.AccountUser">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="LocationAdderess" Association="TimeTracks.LocationAdderess">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Adderess" EntitySet="Adderesses" />
+          </AssociationSet>
+          <AssociationSet Name="LocationPhoneNumber" Association="TimeTracks.LocationPhoneNumber">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="PhoneNumber" EntitySet="PhoneNumbers" />
+          </AssociationSet>
+          <AssociationSet Name="CompanyLocation" Association="TimeTracks.CompanyLocation">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="AdderessCompany" Association="TimeTracks.AdderessCompany">
+            <End Role="Adderess" EntitySet="Adderesses" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="CompanyPhoneNumber" Association="TimeTracks.CompanyPhoneNumber">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="PhoneNumber" EntitySet="PhoneNumbers" />
+          </AssociationSet>
+          <AssociationSet Name="UserPhoneNumber" Association="TimeTracks.UserPhoneNumber">
+            <End Role="User" EntitySet="Users" />
+            <End Role="PhoneNumber" EntitySet="PhoneNumbers" />
+          </AssociationSet>
+          <AssociationSet Name="UserDevice" Association="TimeTracks.UserDevice">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Device" EntitySet="Devices" />
+          </AssociationSet>
+          <EntitySet Name="Punches" EntityType="TimeTracks.Punch" />
+          <AssociationSet Name="JobNote" Association="TimeTracks.JobNote">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="Note" EntitySet="Notes" />
+          </AssociationSet>
+          <AssociationSet Name="ContractDraw" Association="TimeTracks.ContractDraw">
+            <End Role="Contract" EntitySet="Jobs" />
+            <End Role="Draw" EntitySet="PayOuts" />
+          </AssociationSet>
+          <EntitySet Name="PayOuts" EntityType="TimeTracks.PayOut" />
+          <AssociationSet Name="UserPayOut" Association="TimeTracks.UserPayOut">
+            <End Role="User" EntitySet="Users" />
+            <End Role="PayOut" EntitySet="PayOuts" />
+          </AssociationSet>
+          <AssociationSet Name="LocationJob" Association="TimeTracks.LocationJob">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Job" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="PunchNote" Association="TimeTracks.PunchNote">
+            <End Role="Punch" EntitySet="Punches" />
+            <End Role="Note" EntitySet="Notes" />
+          </AssociationSet>
+          <AssociationSet Name="JobPunch" Association="TimeTracks.JobPunch">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="Punch" EntitySet="Punches" />
+          </AssociationSet>
+          <AssociationSet Name="CompanyPunch" Association="TimeTracks.CompanyPunch">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Punch" EntitySet="Punches" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="TimeTracks.RoleTypes" Name="Role" Nullable="false" />
+          <Property Type="Decimal" Name="PayRate" Precision="19" Scale="4" Nullable="true" />
+          <Property Type="TimeTracks.PayIntervals" Name="PayInterval" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="TimeTracks.AccountUser" FromRole="User" ToRole="Account" />
+          <NavigationProperty Name="PhoneNumbers" Relationship="TimeTracks.UserPhoneNumber" FromRole="User" ToRole="PhoneNumber" />
+          <NavigationProperty Name="Devices" Relationship="TimeTracks.UserDevice" FromRole="User" ToRole="Device" />
+          <NavigationProperty Name="PayOuts" Relationship="TimeTracks.UserPayOut" FromRole="User" ToRole="PayOut" />
+          <Property Type="String" Name="ASPid" Nullable="true" />
+        </EntityType>
+        <EnumType Name="RoleTypes">
+          <Member Name="Employee" />
+          <Member Name="Manager" />
+          <Member Name="Admin" />
+        </EnumType>
+        <EnumType Name="PayIntervals">
+          <Member Name="Hourly" />
+          <Member Name="Daily" />
+          <Member Name="Weekly" />
+        </EnumType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <NavigationProperty Name="Account" Relationship="TimeTracks.AccountCompany" FromRole="Company" ToRole="Account" />
+          <NavigationProperty Name="Locations" Relationship="TimeTracks.CompanyLocation" FromRole="Company" ToRole="Location" />
+          <NavigationProperty Name="Adderess" Relationship="TimeTracks.AdderessCompany" FromRole="Company" ToRole="Adderess" />
+          <NavigationProperty Name="PhoneNumbers" Relationship="TimeTracks.CompanyPhoneNumber" FromRole="Company" ToRole="PhoneNumber" />
+          <NavigationProperty Name="Punches" Relationship="TimeTracks.CompanyPunch" FromRole="Company" ToRole="Punch" />
+        </EntityType>
+        <EntityType Name="Adderess">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="StreetAdderess" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Suite" MaxLength="50" Nullable="true" />
+          <Property Type="String" Name="City" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="State" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="ZipCode" Nullable="false" />
+          <Property Type="Boolean" Name="Primary" Nullable="true" />
+          <NavigationProperty Name="Location" Relationship="TimeTracks.LocationAdderess" FromRole="Adderess" ToRole="Location" />
+          <NavigationProperty Name="Company" Relationship="TimeTracks.AdderessCompany" FromRole="Adderess" ToRole="Company" />
+          <Property Type="String" Name="Country" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PhoneNumber">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="AreaCode" Nullable="false" />
+          <Property Type="Int32" Name="Number" Nullable="false" />
+          <Property Type="TimeTracks.NumberTypes" Name="Type" Nullable="false" />
+          <Property Type="String" Name="Extension" Nullable="false" />
+          <Property Type="Boolean" Name="Primary" Nullable="true" />
+          <NavigationProperty Name="Location" Relationship="TimeTracks.LocationPhoneNumber" FromRole="PhoneNumber" ToRole="Location" />
+          <NavigationProperty Name="Company" Relationship="TimeTracks.CompanyPhoneNumber" FromRole="PhoneNumber" ToRole="Company" />
+          <NavigationProperty Name="User" Relationship="TimeTracks.UserPhoneNumber" FromRole="PhoneNumber" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <NavigationProperty Name="Adderess" Relationship="TimeTracks.LocationAdderess" FromRole="Location" ToRole="Adderess" />
+          <NavigationProperty Name="PhoneNumbers" Relationship="TimeTracks.LocationPhoneNumber" FromRole="Location" ToRole="PhoneNumber" />
+          <NavigationProperty Name="Company" Relationship="TimeTracks.CompanyLocation" FromRole="Location" ToRole="Company" />
+          <NavigationProperty Name="Jobs" Relationship="TimeTracks.LocationJob" FromRole="Location" ToRole="Job" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Notes" Relationship="TimeTracks.JobNote" FromRole="Job" ToRole="Note" />
+          <NavigationProperty Name="Location" Relationship="TimeTracks.LocationJob" FromRole="Job" ToRole="Location" />
+          <Property Type="DateTime" Name="StartDateTime" Nullable="false" />
+          <Property Type="DateTime" Name="EndDateTime" Nullable="false" />
+          <Property Type="Boolean" Name="Complete" Nullable="false" />
+          <NavigationProperty Name="Punch" Relationship="TimeTracks.JobPunch" FromRole="Job" ToRole="Punch" />
+        </EntityType>
+        <EntityType Name="Device">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Serial" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="UID" Nullable="false" MaxLength="50" />
+          <Property Type="TimeTracks.DeviceOwner" Name="Owner" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="TimeTracks.UserDevice" FromRole="Device" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Note">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Text" Nullable="false" MaxLength="Max" />
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" />
+          <NavigationProperty Name="Job" Relationship="TimeTracks.JobNote" FromRole="Note" ToRole="Job" />
+          <NavigationProperty Name="Punch" Relationship="TimeTracks.PunchNote" FromRole="Note" ToRole="Punch" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <NavigationProperty Name="Companies" Relationship="TimeTracks.AccountCompany" FromRole="Account" ToRole="Company" />
+          <NavigationProperty Name="Users" Relationship="TimeTracks.AccountUser" FromRole="Account" ToRole="User" />
+          <Property Type="TimeTracks.Days" Name="WeekStart" Nullable="false" />
+        </EntityType>
+        <Association Name="AccountCompany">
+          <End Type="TimeTracks.Account" Role="Account" Multiplicity="1" />
+          <End Type="TimeTracks.Company" Role="Company" Multiplicity="*" />
+        </Association>
+        <Association Name="AccountUser">
+          <End Type="TimeTracks.Account" Role="Account" Multiplicity="1" />
+          <End Type="TimeTracks.User" Role="User" Multiplicity="*" />
+        </Association>
+        <Association Name="LocationAdderess">
+          <End Type="TimeTracks.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="TimeTracks.Adderess" Role="Adderess" Multiplicity="1" />
+        </Association>
+        <Association Name="LocationPhoneNumber">
+          <End Type="TimeTracks.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="TimeTracks.PhoneNumber" Role="PhoneNumber" Multiplicity="*" />
+        </Association>
+        <Association Name="CompanyLocation">
+          <End Type="TimeTracks.Company" Role="Company" Multiplicity="1" />
+          <End Type="TimeTracks.Location" Role="Location" Multiplicity="*" />
+        </Association>
+        <Association Name="AdderessCompany">
+          <End Type="TimeTracks.Adderess" Role="Adderess" Multiplicity="1" />
+          <End Type="TimeTracks.Company" Role="Company" Multiplicity="0..1" />
+        </Association>
+        <Association Name="CompanyPhoneNumber">
+          <End Type="TimeTracks.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="TimeTracks.PhoneNumber" Role="PhoneNumber" Multiplicity="*" />
+        </Association>
+        <Association Name="UserPhoneNumber">
+          <End Type="TimeTracks.User" Role="User" Multiplicity="0..1" />
+          <End Type="TimeTracks.PhoneNumber" Role="PhoneNumber" Multiplicity="*" />
+        </Association>
+        <Association Name="UserDevice">
+          <End Type="TimeTracks.User" Role="User" Multiplicity="1" />
+          <End Type="TimeTracks.Device" Role="Device" Multiplicity="*" />
+        </Association>
+        <EnumType Name="DeviceOwner">
+          <Member Name="Company" />
+          <Member Name="User" />
+        </EnumType>
+        <EnumType Name="NumberTypes">
+          <Member Name="Cell" />
+          <Member Name="Home" />
+          <Member Name="Office" />
+          <Member Name="Work" />
+          <Member Name="Fax" />
+        </EnumType>
+        <EntityType Name="Expense" BaseType="TimeTracks.PayOut">
+        </EntityType>
+        <EntityType Name="Commission" BaseType="TimeTracks.PayOut">
+        </EntityType>
+        <EntityType Name="Punch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="DateTime" Name="PunchIn" Nullable="false" />
+          <Property Type="DateTime" Name="PunchOut" Nullable="true" />
+          <Property Type="Int32" Name="PunchedInBy" Nullable="false" />
+          <Property Type="Int32" Name="PunchedOutBy" Nullable="true" />
+          <Property Type="Boolean" Name="Verified" Nullable="true" />
+          <Property Type="Int32" Name="VerifiedBy" Nullable="true" />
+          <NavigationProperty Name="Notes" Relationship="TimeTracks.PunchNote" FromRole="Punch" ToRole="Note" />
+          <NavigationProperty Name="Job" Relationship="TimeTracks.JobPunch" FromRole="Punch" ToRole="Job" />
+          <NavigationProperty Name="Company" Relationship="TimeTracks.CompanyPunch" FromRole="Punch" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="Contract" BaseType="TimeTracks.Job">
+          <Property Type="Decimal" Name="ContractPrice" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="Draws" Relationship="TimeTracks.ContractDraw" FromRole="Contract" ToRole="Draw" />
+        </EntityType>
+        <EntityType Name="Draw" BaseType="TimeTracks.PayOut">
+          <NavigationProperty Name="Contract" Relationship="TimeTracks.ContractDraw" FromRole="Draw" ToRole="Contract" />
+        </EntityType>
+        <EnumType Name="Days">
+          <Member Name="Sunday" />
+          <Member Name="Monday" />
+          <Member Name="Tuesday" />
+          <Member Name="Wednesday" />
+          <Member Name="Thursday" />
+          <Member Name="Friday" />
+          <Member Name="Saturday" />
+        </EnumType>
+        <Association Name="JobNote">
+          <End Type="TimeTracks.Job" Role="Job" Multiplicity="1" />
+          <End Type="TimeTracks.Note" Role="Note" Multiplicity="*" />
+        </Association>
+        <Association Name="ContractDraw">
+          <End Type="TimeTracks.Contract" Role="Contract" Multiplicity="1" />
+          <End Type="TimeTracks.Draw" Role="Draw" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Task" BaseType="TimeTracks.Job">
+          <Property Type="Int32" Name="Priority" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Call" BaseType="TimeTracks.Job">
+          <Property Type="Int32" Name="AllotedTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PayOut">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Int32" Name="EnteredBy" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="TimeTracks.UserPayOut" FromRole="PayOut" ToRole="User" />
+          <Property Type="Boolean" Name="Approved" Nullable="false" />
+          <Property Type="Int32" Name="ApprovedBy" Nullable="false" />
+        </EntityType>
+        <Association Name="UserPayOut">
+          <End Type="TimeTracks.User" Role="User" Multiplicity="1" />
+          <End Type="TimeTracks.PayOut" Role="PayOut" Multiplicity="*" />
+        </Association>
+        <Association Name="LocationJob">
+          <End Type="TimeTracks.Location" Role="Location" Multiplicity="1" />
+          <End Type="TimeTracks.Job" Role="Job" Multiplicity="*" />
+        </Association>
+        <Association Name="PunchNote">
+          <End Type="TimeTracks.Punch" Role="Punch" Multiplicity="1" />
+          <End Type="TimeTracks.Note" Role="Note" Multiplicity="*" />
+        </Association>
+        <Association Name="JobPunch">
+          <End Type="TimeTracks.Job" Role="Job" Multiplicity="1" />
+          <End Type="TimeTracks.Punch" Role="Punch" Multiplicity="0..1" />
+        </Association>
+        <Association Name="CompanyPunch">
+          <End Type="TimeTracks.Company" Role="Company" Multiplicity="1" />
+          <End Type="TimeTracks.Punch" Role="Punch" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TimeTracksStoreContainer" CdmEntityContainer="TimeTracksContainer">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="PayRate" ColumnName="PayRate" />
+          <ScalarProperty Name="PayInterval" ColumnName="PayInterval" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="ASPid" ColumnName="ASPid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.Company)">
+        <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Adderesses">
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.Adderess)">
+        <MappingFragment StoreEntitySet="Adderesses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StreetAdderess" ColumnName="StreetAdderess" />
+          <ScalarProperty Name="Suite" ColumnName="Suite" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="Primary" ColumnName="Primary" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhoneNumbers">
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.PhoneNumber)">
+        <MappingFragment StoreEntitySet="PhoneNumbers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AreaCode" ColumnName="AreaCode" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
+          <ScalarProperty Name="Primary" ColumnName="Primary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.Location)">
+        <MappingFragment StoreEntitySet="Locations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jobs">
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.Job)">
+        <MappingFragment StoreEntitySet="Jobs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+          <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+          <ScalarProperty Name="Complete" ColumnName="Complete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.Contract)">
+        <MappingFragment StoreEntitySet="Jobs_Contract">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ContractPrice" ColumnName="ContractPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.Task)">
+        <MappingFragment StoreEntitySet="Jobs_Task">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.Call)">
+        <MappingFragment StoreEntitySet="Jobs_Call">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AllotedTime" ColumnName="AllotedTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Devices">
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.Device)">
+        <MappingFragment StoreEntitySet="Devices">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Serial" ColumnName="Serial" />
+          <ScalarProperty Name="UID" ColumnName="UID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notes">
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.Note)">
+        <MappingFragment StoreEntitySet="Notes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.Account)">
+        <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="WeekStart" ColumnName="WeekStart" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Punches">
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.Punch)">
+        <MappingFragment StoreEntitySet="Punches">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="PunchIn" ColumnName="PunchIn" />
+          <ScalarProperty Name="PunchOut" ColumnName="PunchOut" />
+          <ScalarProperty Name="PunchedInBy" ColumnName="PunchedInBy" />
+          <ScalarProperty Name="PunchedOutBy" ColumnName="PunchedOutBy" />
+          <ScalarProperty Name="Verified" ColumnName="Verified" />
+          <ScalarProperty Name="VerifiedBy" ColumnName="VerifiedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayOuts">
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.PayOut)">
+        <MappingFragment StoreEntitySet="PayOuts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="EnteredBy" ColumnName="EnteredBy" />
+          <ScalarProperty Name="Approved" ColumnName="Approved" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.Draw)">
+        <MappingFragment StoreEntitySet="PayOuts_Draw">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.Expense)">
+        <MappingFragment StoreEntitySet="PayOuts_Expense">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.Commission)">
+        <MappingFragment StoreEntitySet="PayOuts_Commission">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AccountCompany" TypeName="TimeTracks.AccountCompany" StoreEntitySet="Companies">
+      <EndProperty Name="Account">
+        <ScalarProperty Name="Id" ColumnName="Account_Id" />
+      </EndProperty>
+      <EndProperty Name="Company">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AccountUser" TypeName="TimeTracks.AccountUser" StoreEntitySet="Users">
+      <EndProperty Name="Account">
+        <ScalarProperty Name="Id" ColumnName="Account_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LocationAdderess" TypeName="TimeTracks.LocationAdderess" StoreEntitySet="Locations">
+      <EndProperty Name="Adderess">
+        <ScalarProperty Name="Id" ColumnName="Adderess_Id" />
+      </EndProperty>
+      <EndProperty Name="Location">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LocationPhoneNumber" TypeName="TimeTracks.LocationPhoneNumber" StoreEntitySet="PhoneNumbers">
+      <EndProperty Name="Location">
+        <ScalarProperty Name="Id" ColumnName="Location_Id" />
+      </EndProperty>
+      <EndProperty Name="PhoneNumber">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Location_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CompanyLocation" TypeName="TimeTracks.CompanyLocation" StoreEntitySet="Locations">
+      <EndProperty Name="Company">
+        <ScalarProperty Name="Id" ColumnName="Company_Id" />
+      </EndProperty>
+      <EndProperty Name="Location">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AdderessCompany" TypeName="TimeTracks.AdderessCompany" StoreEntitySet="Companies">
+      <EndProperty Name="Adderess">
+        <ScalarProperty Name="Id" ColumnName="Adderess_Id" />
+      </EndProperty>
+      <EndProperty Name="Company">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CompanyPhoneNumber" TypeName="TimeTracks.CompanyPhoneNumber" StoreEntitySet="PhoneNumbers">
+      <EndProperty Name="Company">
+        <ScalarProperty Name="Id" ColumnName="Company_Id" />
+      </EndProperty>
+      <EndProperty Name="PhoneNumber">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Company_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserPhoneNumber" TypeName="TimeTracks.UserPhoneNumber" StoreEntitySet="PhoneNumbers">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="PhoneNumber">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="User_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserDevice" TypeName="TimeTracks.UserDevice" StoreEntitySet="Devices">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Device">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="JobNote" TypeName="TimeTracks.JobNote" StoreEntitySet="Notes">
+      <EndProperty Name="Job">
+        <ScalarProperty Name="Id" ColumnName="Job_Id" />
+      </EndProperty>
+      <EndProperty Name="Note">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ContractDraw" TypeName="TimeTracks.ContractDraw" StoreEntitySet="PayOuts_Draw">
+      <EndProperty Name="Contract">
+        <ScalarProperty Name="Id" ColumnName="Contract_Id" />
+      </EndProperty>
+      <EndProperty Name="Draw">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserPayOut" TypeName="TimeTracks.UserPayOut" StoreEntitySet="PayOuts">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="PayOut">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LocationJob" TypeName="TimeTracks.LocationJob" StoreEntitySet="Jobs">
+      <EndProperty Name="Location">
+        <ScalarProperty Name="Id" ColumnName="Location_Id" />
+      </EndProperty>
+      <EndProperty Name="Job">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PunchNote" TypeName="TimeTracks.PunchNote" StoreEntitySet="Notes">
+      <EndProperty Name="Punch">
+        <ScalarProperty Name="Id" ColumnName="Punch_Id" />
+      </EndProperty>
+      <EndProperty Name="Note">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="JobPunch" TypeName="TimeTracks.JobPunch" StoreEntitySet="Punches">
+      <EndProperty Name="Job">
+        <ScalarProperty Name="Id" ColumnName="Job_Id" />
+      </EndProperty>
+      <EndProperty Name="Punch">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CompanyPunch" TypeName="TimeTracks.CompanyPunch" StoreEntitySet="Punches">
+      <EndProperty Name="Company">
+        <ScalarProperty Name="Id" ColumnName="Company_Id" />
+      </EndProperty>
+      <EndProperty Name="Punch">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
