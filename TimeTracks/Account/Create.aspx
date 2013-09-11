@@ -1,10 +1,7 @@
 ﻿<%@ Page Title="Create account" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Create.aspx.cs" Inherits="TimeTracks.Account.Create" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
-    <section id="createAccount">
-        <fieldset>
-            <legend>Create</legend>
+
+<asp:Content ID="MainContentArea" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:Panel ID="createAccount" runat="server">
         <asp:Label ID="Label1" runat="server" Text="Account Settings" Font-Bold="True" Font-Size="20pt"></asp:Label>
         <br />
         <br />
@@ -72,8 +69,5 @@
         <br />
         <br />
         <asp:Button ID="SaveButton" runat="server" Text="Create Account" OnClick="SaveButton_Click" />
-            </fieldset>
-    </section>
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+    </asp:Panel>
 </asp:Content>

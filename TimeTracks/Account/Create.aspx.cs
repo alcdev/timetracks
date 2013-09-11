@@ -47,7 +47,7 @@ namespace TimeTracks.Account
             user.UserName = UserNameTextBox.Text;
 
 
-            // Sill hack until we create a proper numeric-only textbox.
+            // Silly hack until we create a proper numeric-only textbox.
             int zipCode = 0;
             Int32.TryParse(ZipCodeTextBox.Text, out zipCode);
             
@@ -82,6 +82,8 @@ namespace TimeTracks.Account
 
             // Create the default account.
             Sprocs.CreateAccount(account, user, PasswordTextBox1.Text);
+
+            Response.Redirect("/");
         }
     }
 }

@@ -28,6 +28,7 @@ namespace TimeTracks.Account
             if (Membership.ValidateUser(username, PasswordTextBox.Text))
             {
                 if (RememberCheckBox.Checked) FormsAuthentication.SetAuthCookie(username, true);
+                Response.Redirect("/");
             }
             else {
                 FailureText.Visible = true;

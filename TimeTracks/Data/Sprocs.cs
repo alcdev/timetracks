@@ -25,10 +25,6 @@ namespace TimeTracks.Data
         }
 
         public static int CreateUser(User user, string password) {
-            // Create the user in the ASP.Net membership database.
-            MembershipUser User = Membership.CreateUser(user.Account.Id.ToString() + user.UserName, password, user.Email);
-            user.ASPid = User.ProviderUserKey.ToString();
-
             // Check for nullable props that have no value.
             if (!user.PayRate.HasValue) {
                 user.PayRate = null;
@@ -40,9 +36,14 @@ namespace TimeTracks.Data
             // You'd never create an 'inactive' user.
             user.Active = true;
 
+            // Create the user in the ASP.Net membership database.
+            MembershipUser User = Membership.CreateUser(user.Account.Id.ToString() + '-' + user.UserName, password, user.Email);
+            user.ASPid = User.ProviderUserKey.ToString();
+
             // add user, save changes, return user ID.
             db.Users.Add(user);
             db.SaveChanges();
+
             return user.Id;
         }
 
@@ -84,14 +85,62 @@ namespace TimeTracks.Data
                     select u).SingleOrDefault();
         }
 
+        public static RoleTypes GetUserRole(string aspId) {
+            return (from u in db.Users
+                    where u.ASPid == aspId
+                    select u).SingleOrDefault().Role;
+        }
+
+        public static Account GetUserAccount(string aspId)
+        {
+            return (from u in db.Users
+                    where u.ASPid == aspId
+                    select u).SingleOrDefault().Account;
+        }
+
+        public static List<Company> GetCompanies(int accountId)
+        {
+            // TODO: sort by name.
+            return (from c in db.Companies
+                    where c.Account.Id == accountId
+                    select c).ToList();
+        }
+
+        public static Company GetCompany(int companyId)
+        {
+            return (from c in db.Companies
+                    where c.Id == companyId
+                    select c).SingleOrDefault();
+        }
+
         public static List<string> GetDaysOfWeek()
         {
             return EnumToList(typeof(Days));
         }
 
-        public static Days GetDayOfWeek(string phoneType)
+        public static Days GetDayOfWeek(string day)
         {
-            return (Days)NameToEnum(phoneType, typeof(Days));
+            return (Days)NameToEnum(day, typeof(Days));
+        }
+
+        public static List<string> GetRoleTypes()
+        {
+            return EnumToList(typeof(RoleTypes));
+        }
+
+        public static RoleTypes GetRoleType(string role)
+        {
+            return (RoleTypes)NameToEnum(role, typeof(RoleTypes));
+        }
+
+        public static List<string> GetPayIntervals()
+        {
+            return EnumToList(typeof(PayIntervals));
+        }
+
+        public static PayIntervals GetPayInterval(string interval)
+        {
+            return (PayIntervals)NameToEnum(interval, typeof(PayIntervals));
         }
 
         // UTILS
