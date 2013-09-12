@@ -43,6 +43,13 @@ namespace TimeTracks.Users
             // Populate dropdown controls.
             Sprocs.GetRoleTypes().ForEach(role => RoleDropDown.Items.Add(role));
             Sprocs.GetPayIntervals().ForEach(interval => PayIntervalDropDown.Items.Add(interval));
+
+            // Add context menu items to master.
+            var linkList = new List<KeyValuePair<string, string>>();
+            var master = Master as SiteMaster;
+
+            linkList.Add(new KeyValuePair<string,string>("Add Device", "/devices/create"));
+            master.UpdateContextMenu(linkList);
         }
 
         private void Forbidden()

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-
 using TimeTracks.Data;
 
 namespace TimeTracks
@@ -69,6 +69,7 @@ namespace TimeTracks
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             // Check if we are already logged in. If we are, get our real user name and account name.
             // (may want to change it to first/last name, though.
             if (!IsPostBack && HttpContext.Current.User.Identity.IsAuthenticated)
@@ -82,7 +83,27 @@ namespace TimeTracks
                     loginName.FormatString = user.Account.Name + ", " + user.UserName;
                 }
             }
+        }
 
+        public void UpdateContextMenu(List<KeyValuePair<string, string>> linkList) {
+
+            foreach (var link in linkList)
+            {
+                var li = new HtmlGenericControl("li");
+                MenuList.Controls.Add(li);
+
+                var anchor = new HtmlGenericControl("a");
+                anchor.InnerText = link.Key;
+                anchor.Attributes.Add("href", link.Value);
+                
+                li.Controls.Add(anchor);
+            }
+        }
+
+        public void ToggleContextMenu(bool enable)
+        {
+            // Not working.
+             //this.FindControl("tracks-body-content-menu").Visible = enable;
         }
     }
 }

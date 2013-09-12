@@ -68,11 +68,7 @@
             <div id="tracks-body">
                 <div id="tracks-body-content-menu">
                     <strong>Menu</strong><br>
-                    <ul>
-                        <li>Item 1</li>
-                        <li>Item 2</li>
-                        <li>Item 3</li>
-                        <li>Item 4</li>
+                    <ul runat="server" id="MenuList">
                     </ul>
                 </div>
                 <div id="tracks-body-title">

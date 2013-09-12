@@ -69,7 +69,7 @@ namespace TimeTracks.Data
             if (!adderess.Primary.HasValue) {
                 adderess.Primary = null;
             }
-            if (String.IsNullOrEmpty(adderess.Suite)) {
+            if (String.IsNullOrWhiteSpace(adderess.Suite)) {
                 adderess.Suite = null;
             }
 
@@ -79,9 +79,29 @@ namespace TimeTracks.Data
             return adderess.Id;
         }
 
+        public static int CreateDevice(Device device)
+        {
+            // check for nullables.
+            if (String.IsNullOrWhiteSpace(device.Serial))
+            {
+                device.Serial = null;
+            }
+
+            db.Devices.Add(device);
+            db.SaveChanges();
+            return device.Id;
+        }
+
         public static User GetUserByAspId(string aspId) {
             return (from u in db.Users
                     where u.ASPid == aspId
+                    select u).SingleOrDefault();
+        }
+
+        public static User GetUserById(int userID)
+        {
+            return (from u in db.Users
+                    where u.Id == userID
                     select u).SingleOrDefault();
         }
 
@@ -102,6 +122,14 @@ namespace TimeTracks.Data
         {
             // TODO: sort by name.
             return (from c in db.Companies
+                    where c.Account.Id == accountId
+                    select c).ToList();
+        }
+
+        public static List<User> GetUsers(int accountId)
+        {
+            // TODO: sort by name.
+            return (from c in db.Users
                     where c.Account.Id == accountId
                     select c).ToList();
         }
@@ -141,6 +169,16 @@ namespace TimeTracks.Data
         public static PayIntervals GetPayInterval(string interval)
         {
             return (PayIntervals)NameToEnum(interval, typeof(PayIntervals));
+        }
+
+        public static List<string> GetDeviceOwners()
+        {
+            return EnumToList(typeof(DeviceOwner));
+        }
+
+        public static DeviceOwner GetDeviceOwner(string interval)
+        {
+            return (DeviceOwner)NameToEnum(interval, typeof(DeviceOwner));
         }
 
         // UTILS
