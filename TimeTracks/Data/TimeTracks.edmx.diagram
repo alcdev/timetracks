@@ -7,11 +7,11 @@
       <Diagram DiagramId="b733e6dc6e4844cda76d523913e87819" Name="Diagram1" >
         <EntityTypeShape EntityType="TimeTracks.User" Width="1.5" PointX="4.375" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="TimeTracks.Company" Width="1.5" PointX="2.5" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TimeTracks.Adderess" Width="1.5" PointX="6.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TimeTracks.PhoneNumber" Width="1.5" PointX="4.625" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TimeTracks.Location" Width="1.5" PointX="2.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTracks.Adderess" Width="1.5" PointX="6.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTracks.PhoneNumber" Width="1.5" PointX="4.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTracks.Location" Width="1.5" PointX="2.625" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TimeTracks.Job" Width="1.5" PointX="11" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TimeTracks.Device" Width="1.5" PointX="6.375" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTracks.Device" Width="1.5" PointX="6.625" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TimeTracks.Note" Width="1.5" PointX="8.75" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TimeTracks.Account" Width="1.5" PointX="0.5" PointY="0.625" IsExpanded="true" />
         <AssociationConnector Association="TimeTracks.AccountCompany" />
@@ -25,7 +25,7 @@
         <AssociationConnector Association="TimeTracks.UserDevice" />
         <EntityTypeShape EntityType="TimeTracks.Expense" Width="1.5" PointX="10.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TimeTracks.Commission" Width="1.5" PointX="10.75" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TimeTracks.Punch" Width="1.5" PointX="8.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTracks.Punch" Width="1.5" PointX="8.75" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TimeTracks.Contract" Width="1.5" PointX="13" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TimeTracks.Draw" Width="1.5" PointX="10.75" PointY="3.125" IsExpanded="true" />
         <AssociationConnector Association="TimeTracks.JobNote" />
@@ -44,6 +44,8 @@
         <InheritanceConnector EntityType="TimeTracks.Contract" />
         <AssociationConnector Association="TimeTracks.JobPunch" />
         <AssociationConnector Association="TimeTracks.CompanyPunch" />
+        <EntityTypeShape EntityType="TimeTracks.LocationLog" Width="1.5" PointX="6.625" PointY="3.5" />
+        <AssociationConnector Association="TimeTracks.DeviceLocationLog" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

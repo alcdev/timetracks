@@ -140,7 +140,9 @@
     <Content Include="About.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\OpenAuthProviders.ascx" />
+    <Content Include="API\GetDevices.aspx" />
     <Content Include="API\Login.aspx" />
+    <Content Include="API\LogLocation.aspx" />
     <Content Include="API\Logout.aspx" />
     <Content Include="API\UserInfo.aspx" />
     <Content Include="Companies\Create.aspx" />
@@ -275,12 +277,26 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\GetDevices.aspx.cs">
+      <DependentUpon>GetDevices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="API\GetDevices.aspx.designer.cs">
+      <DependentUpon>GetDevices.aspx</DependentUpon>
+    </Compile>
     <Compile Include="API\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="API\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="API\LogLocation.aspx.cs">
+      <DependentUpon>LogLocation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="API\LogLocation.aspx.designer.cs">
+      <DependentUpon>LogLocation.aspx</DependentUpon>
     </Compile>
     <Compile Include="API\Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
@@ -379,6 +395,9 @@
       <DependentUpon>TimeTracks.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Location.cs">
+      <DependentUpon>TimeTracks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\LocationLog.cs">
       <DependentUpon>TimeTracks.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Note.cs">

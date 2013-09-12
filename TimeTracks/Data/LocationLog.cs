@@ -15,32 +15,28 @@ namespace TimeTracks.Data
 using System;
     using System.Collections.Generic;
     
-public partial class Device
+public partial class LocationLog
 {
 
-    public Device()
+    public LocationLog()
     {
 
-        this.LocationLogs = new HashSet<LocationLog>();
+        this.Id = 1000;
 
     }
 
 
     public int Id { get; set; }
 
-    public string Name { get; set; }
+    public double Latitude { get; set; }
 
-    public string Serial { get; set; }
+    public double Longitude { get; set; }
 
-    public string UID { get; set; }
-
-    public DeviceOwner Owner { get; set; }
+    public System.DateTime TimeStamp { get; set; }
 
 
 
-    public virtual User User { get; set; }
-
-    public virtual ICollection<LocationLog> LocationLogs { get; set; }
+    public virtual Device Device { get; set; }
 
 }
 

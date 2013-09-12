@@ -92,6 +92,21 @@ namespace TimeTracks.Data
             return device.Id;
         }
 
+        public static int CreateLocationLog(LocationLog locatioonLog)
+        {
+            // add, save, return id.
+            db.LocationLogs.Add(locatioonLog);
+            db.SaveChanges();
+            return locatioonLog.Id;
+        }
+
+        public static Device GetDeviceByUid(string deviceId)
+        {
+            return (from d in db.Devices
+                    where d.UID == deviceId
+                    select d).SingleOrDefault();
+        }
+
         public static User GetUserByAspId(string aspId) {
             return (from u in db.Users
                     where u.ASPid == aspId
@@ -181,10 +196,20 @@ namespace TimeTracks.Data
             return (DeviceOwner)NameToEnum(interval, typeof(DeviceOwner));
         }
 
+        public static string GetDeviceOwner(DeviceOwner value)
+        {
+            return EnumGetName(value);
+        }
+
         // UTILS
         private static object NameToEnum(string enumName, Type type)
         {
             return Enum.Parse(type, enumName.Replace(" ", "_"));
+        }
+
+        private static string EnumGetName(Enum value)
+        {
+            return Enum.GetName(value.GetType(), value).Replace(" ", "_");
         }
 
         private static List<string> EnumToList(Type type)

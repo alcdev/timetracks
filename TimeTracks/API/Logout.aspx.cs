@@ -19,6 +19,12 @@ namespace TimeTracks.API
                 FormsAuthentication.SignOut();
                 Utils.JsonResponse(Response, true);
             }
+            else {
+                Utils.JsonResponse(Response, false, new
+                {
+                    error = "NOT_LOGGED_IN"
+                });
+            }
         }
     }
 }

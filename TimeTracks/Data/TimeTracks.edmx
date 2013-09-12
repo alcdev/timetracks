@@ -17,6 +17,7 @@
     <EntitySet Name="Accounts" EntityType="TimeTracks.Store.Accounts" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Punches" EntityType="TimeTracks.Store.Punches" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PayOuts" EntityType="TimeTracks.Store.PayOuts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LocationLogs" EntityType="TimeTracks.Store.LocationLogs" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Jobs_Contract" EntityType="TimeTracks.Store.Jobs_Contract" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PayOuts_Draw" EntityType="TimeTracks.Store.PayOuts_Draw" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PayOuts_Expense" EntityType="TimeTracks.Store.PayOuts_Expense" store:Type="Tables" Schema="dbo" />
@@ -86,6 +87,10 @@
     <AssociationSet Name="CompanyPunch" Association="TimeTracks.Store.CompanyPunch">
       <End Role="Company" EntitySet="Companies" />
       <End Role="Punch" EntitySet="Punches" />
+    </AssociationSet>
+    <AssociationSet Name="DeviceLocationLog" Association="TimeTracks.Store.DeviceLocationLog">
+      <End Role="Device" EntitySet="Devices" />
+      <End Role="LocationLog" EntitySet="LocationLogs" />
     </AssociationSet>
     <AssociationSet Name="FK_Contract_inherits_Job" Association="TimeTracks.Store.FK_Contract_inherits_Job">
       <End Role="Job" EntitySet="Jobs" />
@@ -238,6 +243,16 @@
     <Property Name="Approved" Type="bit" Nullable="false" />
     <Property Name="ApprovedBy" Type="int" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocationLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" DefaultValue="1000" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
+    <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+    <Property Name="Device_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Jobs_Contract">
     <Key>
@@ -471,6 +486,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="DeviceLocationLog">
+    <End Role="Device" Type="TimeTracks.Store.Devices" Multiplicity="1" />
+    <End Role="LocationLog" Type="TimeTracks.Store.LocationLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Device">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocationLog">
+        <PropertyRef Name="Device_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Contract_inherits_Job">
     <End Role="Job" Type="TimeTracks.Store.Jobs" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -635,6 +662,11 @@
             <End Role="Company" EntitySet="Companies" />
             <End Role="Punch" EntitySet="Punches" />
           </AssociationSet>
+          <EntitySet Name="LocationLogs" EntityType="TimeTracks.LocationLog" />
+          <AssociationSet Name="DeviceLocationLog" Association="TimeTracks.DeviceLocationLog">
+            <End Role="Device" EntitySet="Devices" />
+            <End Role="LocationLog" EntitySet="LocationLogs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -739,6 +771,7 @@
           <Property Type="String" Name="UID" Nullable="false" MaxLength="50" />
           <Property Type="TimeTracks.DeviceOwner" Name="Owner" Nullable="false" />
           <NavigationProperty Name="User" Relationship="TimeTracks.UserDevice" FromRole="Device" ToRole="User" />
+          <NavigationProperty Name="LocationLogs" Relationship="TimeTracks.DeviceLocationLog" FromRole="Device" ToRole="LocationLog" />
         </EntityType>
         <EntityType Name="Note">
           <Key>
@@ -888,6 +921,20 @@
         <Association Name="CompanyPunch">
           <End Type="TimeTracks.Company" Role="Company" Multiplicity="1" />
           <End Type="TimeTracks.Punch" Role="Punch" Multiplicity="*" />
+        </Association>
+        <EntityType Name="LocationLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" DefaultValue="1000" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Double" Name="Latitude" Nullable="false" />
+          <Property Type="Double" Name="Longitude" Nullable="false" />
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" />
+          <NavigationProperty Name="Device" Relationship="TimeTracks.DeviceLocationLog" FromRole="LocationLog" ToRole="Device" />
+        </EntityType>
+        <Association Name="DeviceLocationLog">
+          <End Type="TimeTracks.Device" Role="Device" Multiplicity="1" />
+          <End Type="TimeTracks.LocationLog" Role="LocationLog" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1051,6 +1098,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="LocationLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTracks.LocationLog)">
+        <MappingFragment StoreEntitySet="LocationLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="AccountCompany" TypeName="TimeTracks.AccountCompany" StoreEntitySet="Companies">
       <EndProperty Name="Account">
         <ScalarProperty Name="Id" ColumnName="Account_Id" />
@@ -1179,6 +1236,14 @@
         <ScalarProperty Name="Id" ColumnName="Company_Id" />
       </EndProperty>
       <EndProperty Name="Punch">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DeviceLocationLog" TypeName="TimeTracks.DeviceLocationLog" StoreEntitySet="LocationLogs">
+      <EndProperty Name="Device">
+        <ScalarProperty Name="Id" ColumnName="Device_Id" />
+      </EndProperty>
+      <EndProperty Name="LocationLog">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>

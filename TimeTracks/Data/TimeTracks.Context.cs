@@ -54,6 +54,8 @@ public partial class TimeTracksContainer : DbContext
 
     public DbSet<PayOut> PayOuts { get; set; }
 
+    public DbSet<LocationLog> LocationLogs { get; set; }
+
 }
 
 }

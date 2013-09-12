@@ -11,7 +11,7 @@ using TimeTracks.Core;
 
 namespace TimeTracks.API
 {
-    public partial class UserInfo : System.Web.UI.Page
+    public partial class GetDevices : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,15 +20,19 @@ namespace TimeTracks.API
             {
                 // Get the user that is logged in.
                 var user = Sprocs.GetUserByAspId(Membership.GetUser().ProviderUserKey.ToString());
-
-                Utils.JsonResponse(Response, true, new
+                var devices = new List<object>();
+                foreach (var device in user.Devices)
                 {
-                    username = user.UserName,
-                    userID = user.Id,
-                    accountName = user.Account.Name,
-                    accountID = user.Account.Id
-                });
+                    devices.Add(new
+                    {
+                        name = device.Name,
+                        id = device.UID,
+                        owner = Sprocs.GetDeviceOwner(device.Owner),
+                        serial = device.Serial
+                    });
+                }
 
+                Utils.JsonResponse(Response, true, devices);
                 return;
             }
             else

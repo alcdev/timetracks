@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 09/11/2013 12:25:33
--- Generated from EDMX file: C:\Users\admin\Dev\timetracks\TimeTracks\Data\TimeTracks.edmx
+-- Date Created: 09/12/2013 17:59:59
+-- Generated from EDMX file: C:\Users\admin\dev\TimeTracks\TimeTracks\Data\TimeTracks.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -146,7 +146,7 @@ GO
 
 -- Creating table 'Users'
 CREATE TABLE [dbo].[Users] (
-    [Id] int IDENTITY(10000,1) NOT NULL,
+    [Id] int IDENTITY(1000,1) NOT NULL,
     [UserName] nvarchar(15)  NOT NULL,
     [FirstName] nvarchar(50)  NOT NULL,
     [LastName] nvarchar(50)  NOT NULL,
@@ -162,7 +162,7 @@ GO
 
 -- Creating table 'Companies'
 CREATE TABLE [dbo].[Companies] (
-    [Id] int IDENTITY(10000,1) NOT NULL,
+    [Id] int IDENTITY(1000,1) NOT NULL,
     [Name] nvarchar(50)  NOT NULL,
     [Account_Id] int  NOT NULL,
     [Adderess_Id] int  NOT NULL
@@ -171,7 +171,7 @@ GO
 
 -- Creating table 'Adderesses'
 CREATE TABLE [dbo].[Adderesses] (
-    [Id] int IDENTITY(10000,1) NOT NULL,
+    [Id] int IDENTITY(1000,1) NOT NULL,
     [StreetAdderess] nvarchar(100)  NOT NULL,
     [Suite] nvarchar(50)  NULL,
     [City] nvarchar(50)  NOT NULL,
@@ -184,7 +184,7 @@ GO
 
 -- Creating table 'PhoneNumbers'
 CREATE TABLE [dbo].[PhoneNumbers] (
-    [Id] int IDENTITY(10000,1) NOT NULL,
+    [Id] int IDENTITY(1000,1) NOT NULL,
     [AreaCode] int  NOT NULL,
     [Number] int  NOT NULL,
     [Type] int  NOT NULL,
@@ -198,7 +198,7 @@ GO
 
 -- Creating table 'Locations'
 CREATE TABLE [dbo].[Locations] (
-    [Id] int IDENTITY(10000,1) NOT NULL,
+    [Id] int IDENTITY(1000,1) NOT NULL,
     [Name] nvarchar(50)  NOT NULL,
     [Adderess_Id] int  NOT NULL,
     [Company_Id] int  NOT NULL
@@ -207,7 +207,7 @@ GO
 
 -- Creating table 'Jobs'
 CREATE TABLE [dbo].[Jobs] (
-    [Id] int IDENTITY(10000,1) NOT NULL,
+    [Id] int IDENTITY(1000,1) NOT NULL,
     [StartDateTime] datetime  NOT NULL,
     [EndDateTime] datetime  NOT NULL,
     [Complete] bit  NOT NULL,
@@ -217,7 +217,7 @@ GO
 
 -- Creating table 'Devices'
 CREATE TABLE [dbo].[Devices] (
-    [Id] int IDENTITY(10000,1) NOT NULL,
+    [Id] int IDENTITY(1000,1) NOT NULL,
     [Name] nvarchar(50)  NOT NULL,
     [Serial] nvarchar(100)  NULL,
     [UID] nvarchar(50)  NOT NULL,
@@ -228,7 +228,7 @@ GO
 
 -- Creating table 'Notes'
 CREATE TABLE [dbo].[Notes] (
-    [Id] int IDENTITY(10000,1) NOT NULL,
+    [Id] int IDENTITY(1000,1) NOT NULL,
     [Text] nvarchar(max)  NOT NULL,
     [TimeStamp] datetime  NOT NULL,
     [Job_Id] int  NOT NULL,
@@ -238,7 +238,7 @@ GO
 
 -- Creating table 'Accounts'
 CREATE TABLE [dbo].[Accounts] (
-    [Id] int IDENTITY(10000,1) NOT NULL,
+    [Id] int IDENTITY(1000,1) NOT NULL,
     [Name] nvarchar(50)  NOT NULL,
     [WeekStart] int  NOT NULL
 );
@@ -246,7 +246,7 @@ GO
 
 -- Creating table 'Punches'
 CREATE TABLE [dbo].[Punches] (
-    [Id] int IDENTITY(10000,1) NOT NULL,
+    [Id] int IDENTITY(1000,1) NOT NULL,
     [Date] datetime  NOT NULL,
     [PunchIn] datetime  NOT NULL,
     [PunchOut] datetime  NULL,
@@ -261,13 +261,23 @@ GO
 
 -- Creating table 'PayOuts'
 CREATE TABLE [dbo].[PayOuts] (
-    [Id] int IDENTITY(10000,1) NOT NULL,
+    [Id] int IDENTITY(1000,1) NOT NULL,
     [Amount] decimal(19,4)  NOT NULL,
     [Date] datetime  NOT NULL,
     [EnteredBy] int  NOT NULL,
     [Approved] bit  NOT NULL,
     [ApprovedBy] int  NOT NULL,
     [User_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'LocationLogs'
+CREATE TABLE [dbo].[LocationLogs] (
+    [Id] int IDENTITY(1000,1) NOT NULL,
+    [Latitude] float  NOT NULL,
+    [Longitude] float  NOT NULL,
+    [TimeStamp] datetime  NOT NULL,
+    [Device_Id] int  NOT NULL
 );
 GO
 
@@ -378,6 +388,12 @@ GO
 -- Creating primary key on [Id] in table 'PayOuts'
 ALTER TABLE [dbo].[PayOuts]
 ADD CONSTRAINT [PK_PayOuts]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'LocationLogs'
+ALTER TABLE [dbo].[LocationLogs]
+ADD CONSTRAINT [PK_LocationLogs]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -643,6 +659,20 @@ ADD CONSTRAINT [FK_CompanyPunch]
 CREATE INDEX [IX_FK_CompanyPunch]
 ON [dbo].[Punches]
     ([Company_Id]);
+GO
+
+-- Creating foreign key on [Device_Id] in table 'LocationLogs'
+ALTER TABLE [dbo].[LocationLogs]
+ADD CONSTRAINT [FK_DeviceLocationLog]
+    FOREIGN KEY ([Device_Id])
+    REFERENCES [dbo].[Devices]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DeviceLocationLog'
+CREATE INDEX [IX_FK_DeviceLocationLog]
+ON [dbo].[LocationLogs]
+    ([Device_Id]);
 GO
 
 -- Creating foreign key on [Id] in table 'Jobs_Contract'
