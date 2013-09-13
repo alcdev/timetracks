@@ -43,6 +43,7 @@
                     <li><a href="/users/create">Users</a></li>
                     <li><a href="/companies/create">Companies</a></li>
                     <li><a href="/locations/create">Locations</a></li>
+                    <li><a href="/scheduling/view">Locations</a></li>
                 </ul>
 
                 <section id="login">
