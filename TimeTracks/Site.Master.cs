@@ -67,13 +67,6 @@ namespace TimeTracks
                     throw new InvalidOperationException("Validation of Anti-XSRF token failed.");
                 }
             }
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {            
-            
-            // If it's a post back, don't bother.
-            if (Page.IsPostBack) return;
 
             // See if it's a new session.
             if (!CurrentSession.Active)
@@ -100,6 +93,13 @@ namespace TimeTracks
                     }
                 }
             }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {            
+            
+            // If it's a post back, don't bother.
+            if (Page.IsPostBack) return;
 
             if (CurrentSession.Active)
             {

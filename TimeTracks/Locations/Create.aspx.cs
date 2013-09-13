@@ -25,7 +25,6 @@ namespace TimeTracks.Locations
             {
                 PopulateControls();
             }
-
         }
 
         private void PopulateControls()

@@ -156,6 +156,13 @@ namespace TimeTracks.Data
                     select c).SingleOrDefault();
         }
 
+        public static List<Device> GetUserDevices(int userId)
+        {
+            return (from d in db.Devices
+                    where d.User.Id == userId
+                    select d).ToList();
+        }
+
         public static List<string> GetDaysOfWeek()
         {
             return EnumToList(typeof(Days));
