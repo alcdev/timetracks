@@ -7,34 +7,23 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using TimeTracks.Data;
+using TimeTracks.Core;
 
 namespace TimeTracks.Users
 {
     public partial class Create : System.Web.UI.Page
     {
-        private string aspId;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (HttpContext.Current.User.Identity.IsAuthenticated)
-            {
-                aspId = Membership.GetUser().ProviderUserKey.ToString();
-            }
-            else
+            if (!CurrentSession.Active || CurrentSession.UserRole != RoleTypes.Admin)
             {
                 Forbidden();
                 return;
             }
 
-            if (Sprocs.GetUserRole(aspId) == RoleTypes.Admin)
+            if (!Page.IsPostBack)
             {
-                if (!Page.IsPostBack)
-                {
-                    PopulateControls();
-                }
-            }
-            else
-            {
-                Forbidden();
+                PopulateControls();
             }
         }
 
@@ -82,7 +71,7 @@ namespace TimeTracks.Users
             user.Role = Sprocs.GetRoleType(RoleDropDown.SelectedValue);
             user.PayInterval = Sprocs.GetPayInterval(PayIntervalDropDown.SelectedValue);
             user.UserName = UserNameTextBox.Text;
-            user.Account = Sprocs.GetUserAccount(aspId); // it's the same account we're creating the user from.
+            user.Account = Sprocs.GetUserAccount(CurrentSession.AspId); // it's the same account we're creating the user from.
 
             Sprocs.CreateUser(user, PasswordTextBox1.Text);
 

@@ -7,27 +7,19 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using TimeTracks.Data;
+using TimeTracks.Core;
 
 namespace TimeTracks.Companies
 {
     public partial class Create : System.Web.UI.Page
     {
-        private string aspId;
+        //private string aspId;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (HttpContext.Current.User.Identity.IsAuthenticated)
-            {
-                aspId = Membership.GetUser().ProviderUserKey.ToString();
-            }
-            else
+            if (!CurrentSession.Active || CurrentSession.UserRole != RoleTypes.Admin)
             {
                 Forbidden();
                 return;
-            }
-
-            if (Sprocs.GetUserRole(aspId) != RoleTypes.Admin)
-            {
-                Forbidden();
             }
         }
 
@@ -62,7 +54,7 @@ namespace TimeTracks.Companies
             var company = new Company();
             company.Name = CompanyNameTextBox.Text;
             company.Adderess = adderess;
-            company.Account = Sprocs.GetUserAccount(aspId); // it's the same account we're creating the user from.
+            company.Account = Sprocs.GetUserAccount(CurrentSession.AspId); // it's the same account we're creating the user from.
 
             Sprocs.CreateCompany(company);
 

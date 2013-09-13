@@ -7,38 +7,25 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using TimeTracks.Data;
+using TimeTracks.Core;
 
 namespace TimeTracks.Devices
 {
     public partial class Create : System.Web.UI.Page
     {
-        private string aspId;
-        private TimeTracks.Data.Account account;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (HttpContext.Current.User.Identity.IsAuthenticated)
-            {
-                aspId = Membership.GetUser().ProviderUserKey.ToString();
-                account = Sprocs.GetUserAccount(aspId);
-            }
-            else
+            if (!CurrentSession.Active || !(CurrentSession.UserRole == RoleTypes.Admin || CurrentSession.UserRole == RoleTypes.Manager))
             {
                 Forbidden();
                 return;
             }
 
-            var role = Sprocs.GetUserRole(aspId);
-            if (role == RoleTypes.Admin || role == RoleTypes.Manager)
+            if (!Page.IsPostBack)
             {
-                if (!Page.IsPostBack)
-                {
-                    PopulateControls();
-                }
+                PopulateControls();
             }
-            else
-            {
-                Forbidden();
-            }
+
         }
 
         private void PopulateControls()
@@ -47,7 +34,7 @@ namespace TimeTracks.Devices
             // Populate dropdown controls.
             Sprocs.GetDeviceOwners().ForEach(owner => OwnerDropDown.Items.Add(owner));
 
-            Sprocs.GetUsers(account.Id).ForEach(user =>
+            Sprocs.GetUsers(CurrentSession.AccountId).ForEach(user =>
                 UserDropDown.Items.Add(new ListItem(user.UserName, user.Id.ToString())));
 
             DeviceIdTextBox.Text = Guid.NewGuid().ToString();

@@ -6,7 +6,9 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+
 using TimeTracks.Data;
+using TimeTracks.Core;
 
 namespace TimeTracks
 {
@@ -68,19 +70,44 @@ namespace TimeTracks
         }
 
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {            
             
-            // Check if we are already logged in. If we are, get our real user name and account name.
-            // (may want to change it to first/last name, though.
-            if (!IsPostBack && HttpContext.Current.User.Identity.IsAuthenticated)
+            // If it's a post back, don't bother.
+            if (Page.IsPostBack) return;
+
+            // See if it's a new session.
+            if (!CurrentSession.Active)
             {
-                // Get the user that is logged in.
-                var user = Sprocs.GetUserByAspId(Membership.GetUser().ProviderUserKey.ToString());
+
+                // Check if we are already logged in. If we are, get our real user name and account name.
+                // (may want to change it to first/last name, though.
+                if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    // Get the user that is logged in.
+                    var user = Sprocs.GetUserByAspId(Membership.GetUser().ProviderUserKey.ToString());
+
+                    // If we have a valid user, create a new session object.
+                    if (user != null)
+                    {
+                        CurrentSession.Active = true;
+                        CurrentSession.AccountId = user.Account.Id;
+                        CurrentSession.AspId = user.ASPid;
+                        CurrentSession.DispalyName = String.Format("{0}, {1} {2}", user.Account.Name, user.FirstName, user.LastName);
+                        CurrentSession.UserId = user.Id;
+                        CurrentSession.Username = user.UserName;
+                        CurrentSession.UserRole = user.Role;
+
+                    }
+                }
+            }
+
+            if (CurrentSession.Active)
+            {
                 var loginName = LoginView1.FindControl("LoginName1") as LoginName;
-                
+
                 if (loginName != null)
                 {
-                    loginName.FormatString = user.Account.Name + ", " + user.UserName;
+                    loginName.FormatString = CurrentSession.DispalyName;
                 }
             }
         }
@@ -104,6 +131,11 @@ namespace TimeTracks
         {
             // Not working.
              //this.FindControl("tracks-body-content-menu").Visible = enable;
+        }
+
+        protected void LoginStatus_LoggedOut(Object sender, System.EventArgs e)
+        {
+            Session.Abandon();
         }
     }
 }

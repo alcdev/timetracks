@@ -7,44 +7,31 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using TimeTracks.Data;
+using TimeTracks.Core;
 
 namespace TimeTracks.Locations
 {
     public partial class Create : System.Web.UI.Page
     {
-        private string aspId;
-        private TimeTracks.Data.Account account;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (HttpContext.Current.User.Identity.IsAuthenticated)
-            {
-                aspId = Membership.GetUser().ProviderUserKey.ToString();
-                account = Sprocs.GetUserAccount(aspId);
-            }
-            else
+            if (!CurrentSession.Active || !(CurrentSession.UserRole == RoleTypes.Admin || CurrentSession.UserRole == RoleTypes.Manager))
             {
                 Forbidden();
                 return;
             }
 
-            var role = Sprocs.GetUserRole(aspId);
-            if (role == RoleTypes.Admin || role == RoleTypes.Manager)
+            if (!Page.IsPostBack)
             {
-                if (!Page.IsPostBack)
-                {
-                    PopulateControls();
-                }
+                PopulateControls();
             }
-            else
-            {
-                Forbidden();
-            }
+
         }
 
         private void PopulateControls()
         {
             // Populate dropdown controls.
-            Sprocs.GetCompanies(account.Id).ForEach(company => 
+            Sprocs.GetCompanies(CurrentSession.AccountId).ForEach(company => 
                 CompanyDropDown.Items.Add(new ListItem(company.Name, company.Id.ToString())));
         }
 

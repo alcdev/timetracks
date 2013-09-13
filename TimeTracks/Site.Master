@@ -43,7 +43,7 @@
                     <li><a href="/users/create">Users</a></li>
                     <li><a href="/companies/create">Companies</a></li>
                     <li><a href="/locations/create">Locations</a></li>
-                    <li><a href="/scheduling/view">Locations</a></li>
+                    <li><a href="/scheduling/view">Scheduling</a></li>
                 </ul>
 
                 <section id="login">
@@ -59,7 +59,7 @@
                                 Hello, <a id="A1" runat="server" class="username" href="~/Account/Manage" title="Manage your account">
                                     <asp:LoginName ID="LoginName1" runat="server" CssClass="username" />
                                 </a>!
-                                <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
+                                <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" onloggedout="LoginStatus_LoggedOut"/>
                             </p>
                         </LoggedInTemplate>
                     </asp:LoginView>

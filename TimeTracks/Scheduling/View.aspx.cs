@@ -5,38 +5,25 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 using TimeTracks.Data;
+using TimeTracks.Core;
 
 namespace TimeTracks.Scheduling
 {
     public partial class View : System.Web.UI.Page
     {
-        private string aspId;
-        private TimeTracks.Data.Account account;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (HttpContext.Current.User.Identity.IsAuthenticated)
-            {
-                aspId = Membership.GetUser().ProviderUserKey.ToString();
-                account = Sprocs.GetUserAccount(aspId);
-            }
-            else
+            if (!CurrentSession.Active || !(CurrentSession.UserRole == RoleTypes.Admin || CurrentSession.UserRole == RoleTypes.Manager))
             {
                 Forbidden();
                 return;
             }
 
-            var role = Sprocs.GetUserRole(aspId);
-            if (role == RoleTypes.Admin || role == RoleTypes.Manager)
+            if (!Page.IsPostBack)
             {
-                if (!Page.IsPostBack)
-                {
-                    PopulateControls();
-                }
-            }
-            else
-            {
-                Forbidden();
+                PopulateControls();
             }
 
         }
@@ -48,7 +35,7 @@ namespace TimeTracks.Scheduling
             // TODO: create a proper 404 page.
             Response.Status = "403 Forbidden - You must sign in to access this page.";
             Response.StatusCode = 403;
-            
+
             // TODO: an error message would be nice.  Perhaps we should have a 403 re-direct.
             viewScheduling.Controls.Clear();
         }
@@ -59,13 +46,18 @@ namespace TimeTracks.Scheduling
             var linkList = new List<KeyValuePair<string, string>>();
             var master = Master as SiteMaster;
 
-            foreach(var user in Sprocs.GetUsers(account.Id))
+            foreach (var user in Sprocs.GetUsers(CurrentSession.AccountId))
             {
+                /* TODO: pretty URLs.
                 linkList.Add(new KeyValuePair<string, string>(
                     user.UserName,  String.Format(
-                    "/scheduling/view/{0}/{1}", account.Id, user.Id)));
+                    "/scheduling/view/{0}/{1}", CurrentSession.AccountId, user.Id)));
+                 */
+                linkList.Add(new KeyValuePair<string, string>(
+                    user.UserName, String.Format(
+                    "/scheduling/view?ac={0}&ur={1}", CurrentSession.AccountId, user.Id)));
             }
-            
+
             master.UpdateContextMenu(linkList);
         }
     }

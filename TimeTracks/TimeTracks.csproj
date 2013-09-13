@@ -358,6 +358,7 @@
     <Compile Include="Account\Create.aspx.designer.cs">
       <DependentUpon>Create.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Core\CurrentSession.cs" />
     <Compile Include="Core\Utils.cs" />
     <Compile Include="Data\Account.cs">
       <DependentUpon>TimeTracks.tt</DependentUpon>
