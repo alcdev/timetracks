@@ -39,7 +39,7 @@ width:150px;    /*Or however much space you need for the form’s labels*/
 		#tracks_menu {
 			position: relative;
 			margin-left: 190px;
-			top: 25px;
+			top: 30px;
 			margin-right: 0px;
 		}
 
@@ -52,7 +52,8 @@ width:150px;    /*Or however much space you need for the form’s labels*/
 			background-color: #404464;
 			color: #fff;
 			text-decoration: none;
-            box-shadow: 0px 1px 3px 1px #212942;
+            border-bottom-left-radius: 2px;
+            box-shadow: 0px 1px 3px 1px #1D243A;
 		}
 
             #login a {
@@ -61,7 +62,7 @@ width:150px;    /*Or however much space you need for the form’s labels*/
 
             #login ul,#login p {
             margin: 5px;
-padding: 5px;
+            padding: 5px;
             }
 
 		#tracks_menu  li, #login li {
@@ -77,7 +78,7 @@ padding: 5px;
 			background-color: #404464;
 			color: #C8CFDA;
 			text-decoration: none;
-            box-shadow: 0px 1px 3px 1px #212942;
+            box-shadow: 1px -2px 3px 0px #1D243A;
 		}
 
 		#tracks_menu  li a:hover {
