@@ -12,6 +12,7 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    
 </head>
 <body>
     <form runat="server" style="height: 100%">
@@ -35,11 +36,12 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-        <div id="tracks-wrapper">
-            <div id="tracks-header">
-                <h1><a id="tracks-logo" href="../">TimeTracks</a></h1>
+        <script src="../Scripts/timetracks.js" type="text/javascript"></script>
+        <div id="tracks_wrapper">
+            <div id="tracks_header">
+                <h1><a id="tracks_logo" href="../"><img src="../images/logo.png" alt=""/> TimeTracks</a></h1>
 
-                <ul id="tracks-menu">
+                <ul id="tracks_menu">
                     <li><a href="/users/create">Users</a></li>
                     <li><a href="/companies/create">Companies</a></li>
                     <li><a href="/locations/create">Locations</a></li>
@@ -66,17 +68,17 @@
                 </section>
 
             </div>
-            <div id="tracks-body">
-                <div id="tracks-body-content-menu">
+            <div id="tracks_body">
+                <div id="tracks_body_content_menu">
                     <strong>Menu</strong><br>
                     <ul runat="server" id="MenuList">
                     </ul>
                 </div>
-                <div id="tracks-body-title">
+                <div id="tracks_body_title">
                     <h3><%: Page.Title %></h3>
                 </div>
 
-                <div id="tracks-body-content">
+                <div id="tracks_body_content">
                     <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
                     <section class="content-wrapper main-content clear-fix">
                         <asp:ContentPlaceHolder runat="server" ID="MainContent" />
@@ -84,8 +86,8 @@
 
                 </div>
             </div>
-            <div id="tracks-footer">
-                <div id="tracks-footer-content">
+            <div id="tracks_footer">
+                <div id="tracks_footer_content">
                     <p>&copy; <%: DateTime.Now.Year %> - TimeTracks</p>
                 </div>
             </div>

@@ -15,19 +15,19 @@ width:150px;    /*Or however much space you need for the form’s labels*/
     float:left;
 }
 		
-		#tracks-wrapper {
+		#tracks_wrapper {
 			min-height: 100%;
 			position: relative;
 		}
 		
-		#tracks-header {
+		#tracks_header {
 			background-color: #242B40;
 			height: 80px;
 			padding: 3px;
 			box-shadow: 0px 1px 3px 1px #B3C2D1;
 		}
 		
-		#tracks-logo {
+		#tracks_logo {
 		color: #FFF;
 		font-size: 30px;
 		text-decoration: none;
@@ -36,63 +36,84 @@ width:150px;    /*Or however much space you need for the form’s labels*/
 		}
 		
 
-		#tracks-menu {
+		#tracks_menu {
 			position: relative;
-			margin-left: 150px;
-			top: 20px;
+			margin-left: 190px;
+			top: 25px;
 			margin-right: 0px;
 		}
 
         #login {
 			position: absolute;
-            right: 20px;
-            top: 20px;
+            right: 0px;
+            padding-right: 5px;
+            top: 0px;
             float: right;
+			background-color: #404464;
+			color: #fff;
+			text-decoration: none;
+            box-shadow: 0px 1px 3px 1px #212942;
 		}
-		#tracks-menu  li, #login li {
+
+            #login a {
+                color: #C8CFDA;
+            }
+
+            #login ul,#login p {
+            margin: 5px;
+padding: 5px;
+            }
+
+		#tracks_menu  li, #login li {
 			display:inline;
 			margin-right: 8px;
 		}
 		
-		#tracks-menu  li a, #login li a {   
-			border-radius: 6px;
+		#tracks_menu  li a {   
+			border-radius: 2px;
 			text-align: center;
 			width: 78px;
-			padding: 7px;
+			padding: 4px;
 			background-color: #404464;
 			color: #C8CFDA;
 			text-decoration: none;
+            box-shadow: 0px 1px 3px 1px #212942;
 		}
 
-		#tracks-menu  li a:hover, #login li a:hover {
+		#tracks_menu  li a:hover {
 			background-color:#9B1C26;
 		}
 		
-		#tracks-body {
+		#tracks_body {
 			padding-bottom: 60px !important;
 			padding: 3px;
 		}
 		
-		#tracks-body-content-menu {
+		#tracks_body_content_menu {
 			float: left;
 			width: 150px;
 			padding: 5px;
 			background-color: #242B40;
 			box-shadow: 0px 1px 3px 1px #B3C2D1;
 			color: #FFF;
+            border-radius: 2px;
 		}
+
+            #tracks_body_content_menu a {
+                 color: #C8CFDA;
+            }
 		
-		#tracks-body-content-menu ul {
+		#tracks_body_content_menu ul {
 			list-style: none;
 			padding: 0;
 		}
 		
 		
-		#tracks-body-content, #tracks-body-title {
+		#tracks_body_content, #tracks_body_title {
 			margin-left: 170px;
 		}
 		
-		#tracks-footer {
+		#tracks_footer {
 			background-color: #242B40;
 			height: 50px;
 			width: 100%;
@@ -103,178 +124,18 @@ width:150px;    /*Or however much space you need for the form’s labels*/
 			color: #FFF;
 		}
 
-		#tracks-footer-content {
+		#tracks_footer_content {
 			padding: 3px;
 			text-align: center;
 		}
 
 
-/********************
-*   Mobile Styles   *
-********************/
-@media only screen and (max-width: 850px) {
 
-    /* header
-    ----------------------------------------------------------*/
-    header .float-left,
-    header .float-right {
-        float: none;
-    }
-
-    /* logo */
-    header .site-title {
-        margin: 10px;
-        text-align: center;
-    }
-
-    /* login */
-    #login {
-        font-size: .85em;
-        margin: 0 0 12px;
-        text-align: center;
-    }
-
-        #login ul {
-            margin: 5px 0;
-            padding: 0;
-        }
-
-        #login li {
-            display: inline;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        #login a {
-            background: none;
-            color: #999;
-            font-weight: 600;
-            margin: 2px;
-            padding: 0;
-        }
-
-        #login a:hover {
-            color: #333;
-        }
-
-    /* menu */
-    nav {
-        margin-bottom: 5px;
-    }
-
-    ul#menu {
-        margin: 0;
-        padding: 0;
-        text-align: center;
-    }
-
-        ul#menu li {
-            margin: 0;
-            padding: 0;
-        }
-
-
-    /* main layout
-    ----------------------------------------------------------*/
-    .main-content,
-    .featured + .main-content {
-        background-position: 10px 0;
-    }
-
-    .content-wrapper {
-        padding-right: 10px;
-        padding-left: 10px;
-    }
-
-    .featured .content-wrapper {
-        padding: 10px;
-    }
-
-    /* page content */
-    article, aside {
-        float: none;
-        width: 100%;
-    }
-
-    /* ordered list */
-    ol.round {
-        list-style-type: none;
-        padding-left: 0;
-    }
-
-        ol.round li {
-            padding-left: 10px;
-            margin: 25px 0;
-        }
-
-            ol.round li.zero,
-            ol.round li.one,
-            ol.round li.two,
-            ol.round li.three,
-            ol.round li.four,
-            ol.round li.five,
-            ol.round li.six,
-            ol.round li.seven,
-            ol.round li.eight,
-            ol.round li.nine {
-                background: none;
-            }
-
-     /* features */
-     section.feature {
-        float: none;
-        padding: 10px;
-        width: auto;
-     }
-
-        section.feature img {
-            color: #999;
-            content: attr(alt);
-            font-size: 1.5em;
-            font-weight: 600;
-        }
-
-    /* forms */
-    input {
-        width: 90%;
-    }
-
-    
-    
-    /* login page */
-    #loginForm {
-        border-right: none;
-        float: none;
-        width: auto;
-    }
-
-        #loginForm .validation-error {
-            display: block;
-            margin-left: 15px;
-        }
-
-    #socialLoginForm {
-        margin-left: 0;
-        float: none;
-        width: auto;
-    }
-
-    /* footer
-    ----------------------------------------------------------*/
-    footer .float-left,
-    footer .float-right {
-        float: none;
-    }
-
-    footer {
-        text-align: center;
-        height: auto;
-        padding: 10px 0;
-    }
-
-        footer p {
-            margin: 0;
-        }
+.validation-summary-errors {
+color: #FFF;
+background-color: #D46262;
+padding: 5px;
+border: solid 1px #FFF;
+box-shadow: 0px 1px 3px 1px #D1B3B3;
+border-radius: 2px;
 }
-/* END: Mobile Styles */
