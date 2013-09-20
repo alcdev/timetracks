@@ -52,15 +52,14 @@
                     <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul>
-                                <li><a id="registerLink" runat="server" href="~/Account/Create">Register</a></li>
-                                <li><a id="loginLink" runat="server" href="~/Account/Login">Log in</a></li>
+                                <li><a id="registerLink" runat="server" href="~/account/create">Register</a></li>
+                                <li><a id="loginLink" runat="server" href="~/account/login">Log in</a></li>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
                             <p>
-                                Hello, <a id="A1" runat="server" class="username" href="~/Account/Manage" title="Manage your account">
-                                    <asp:LoginName ID="LoginName1" runat="server" CssClass="username" />
-                                </a>!
+                                <a id="A1" runat="server" class="username" href="~/Account/Manage" title="Manage your account">
+                                    <asp:LoginName ID="LoginName1" runat="server" CssClass="username" /></a>&nbsp;|
                                 <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" onloggedout="LoginStatus_LoggedOut"/>
                             </p>
                         </LoggedInTemplate>

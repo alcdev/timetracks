@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 09/12/2013 17:59:59
--- Generated from EDMX file: C:\Users\admin\dev\TimeTracks\TimeTracks\Data\TimeTracks.edmx
+-- Date Created: 09/19/2013 14:46:04
+-- Generated from EDMX file: C:\Users\admin\Dev\timetracks\TimeTracks\Data\TimeTracks.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [timetracks];
+USE [master];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -65,6 +65,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_CompanyPunch]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Punches] DROP CONSTRAINT [FK_CompanyPunch];
 GO
+IF OBJECT_ID(N'[dbo].[FK_DeviceLocationLog]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LocationLogs] DROP CONSTRAINT [FK_DeviceLocationLog];
+GO
 IF OBJECT_ID(N'[dbo].[FK_Contract_inherits_Job]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Jobs_Contract] DROP CONSTRAINT [FK_Contract_inherits_Job];
 GO
@@ -120,6 +123,9 @@ IF OBJECT_ID(N'[dbo].[Punches]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[PayOuts]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PayOuts];
+GO
+IF OBJECT_ID(N'[dbo].[LocationLogs]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LocationLogs];
 GO
 IF OBJECT_ID(N'[dbo].[Jobs_Contract]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Jobs_Contract];

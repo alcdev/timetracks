@@ -100,6 +100,18 @@ namespace TimeTracks.Data
             return locatioonLog.Id;
         }
 
+        public static bool RegisterDevice(Device device, string serial)
+        {
+            if (String.IsNullOrWhiteSpace(serial))
+            {
+                return false;
+            }
+
+            device.Serial = serial;
+            db.SaveChanges();
+            return true;
+        }
+
         public static Device GetDeviceByUid(string deviceId)
         {
             return (from d in db.Devices

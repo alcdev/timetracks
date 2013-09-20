@@ -21,8 +21,14 @@ namespace TimeTracks.API
                 // Get the user that is logged in.
                 var user = Sprocs.GetUserByAspId(Membership.GetUser().ProviderUserKey.ToString());
                 var devices = new List<object>();
+                var getUnregistered = (Request["unreg"] != null);
+
                 foreach (var device in user.Devices)
                 {
+
+                    // See if we're only asking for unregistured devices.  If so, skip ones with a serial.
+                    if (getUnregistered && !String.IsNullOrEmpty(device.Serial)) continue;
+
                     devices.Add(new
                     {
                         name = device.Name,
@@ -32,7 +38,17 @@ namespace TimeTracks.API
                     });
                 }
 
-                Utils.JsonResponse(Response, true, devices);
+                if (devices.Count > 0)
+                {
+                    Utils.JsonResponse(Response, true, devices);
+                }
+                else {
+                    Utils.JsonResponse(Response, false, new
+                    {
+                        error = getUnregistered ? "NO_UNREGISTERED_DEVICES" : "NO_DEVICES"
+                    });
+                }
+
                 return;
             }
             else

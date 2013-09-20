@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegisterDevice.aspx.cs" Inherits="TimeTracks.API.RegisterDevice" %>

@@ -144,6 +144,7 @@
     <Content Include="API\Login.aspx" />
     <Content Include="API\LogLocation.aspx" />
     <Content Include="API\Logout.aspx" />
+    <Content Include="API\RegisterDevice.aspx" />
     <Content Include="API\UserInfo.aspx" />
     <Content Include="Companies\Create.aspx" />
     <Content Include="Contact.aspx" />
@@ -247,6 +248,7 @@
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\timetracks.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />
@@ -308,6 +310,13 @@
     </Compile>
     <Compile Include="API\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="API\RegisterDevice.aspx.cs">
+      <DependentUpon>RegisterDevice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="API\RegisterDevice.aspx.designer.cs">
+      <DependentUpon>RegisterDevice.aspx</DependentUpon>
     </Compile>
     <Compile Include="API\UserInfo.aspx.cs">
       <DependentUpon>UserInfo.aspx</DependentUpon>

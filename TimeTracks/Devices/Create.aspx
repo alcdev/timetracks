@@ -6,12 +6,12 @@
         <br />
         <asp:Label ID="Label14" runat="server" Text="Device Name"></asp:Label><br />
         <asp:TextBox ID="DeviceNameTextBox" runat="server" MaxLength="50"></asp:TextBox>
-        <br />
+        <%--<br />
         <asp:Label ID="Label15" runat="server" Text="Serial Number"></asp:Label><br />
-        <asp:TextBox ID="SerialNumberTextBox" runat="server" MaxLength="100"></asp:TextBox>
+        <asp:TextBox ID="SerialNumberTextBox" runat="server" MaxLength="100"></asp:TextBox>--%>
         <br />
         <asp:Label ID="Label16" runat="server" Text="Device ID"></asp:Label>&nbsp;
-        <asp:LinkButton ID="EditIdButton" runat="server" OnClick="EditIdButton_Click">(edit)</asp:LinkButton>
+        <%--<asp:LinkButton ID="EditIdButton" runat="server" OnClick="EditIdButton_Click">(edit)</asp:LinkButton>--%>
         <br />
         <asp:TextBox ID="DeviceIdTextBox" runat="server" Enabled="false" MaxLength="50"></asp:TextBox>
         <br />

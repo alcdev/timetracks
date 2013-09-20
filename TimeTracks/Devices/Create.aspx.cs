@@ -52,11 +52,13 @@ namespace TimeTracks.Devices
             editDevice.Controls.Clear();
         }
 
+        /*
         protected void EditIdButton_Click(object sender, EventArgs e)
         {
             DeviceIdTextBox.Enabled = true;
             EditIdButton.Visible = false;
         }
+        */
 
         protected void SaveButton_Click(object sender, EventArgs e)
         {
@@ -65,7 +67,7 @@ namespace TimeTracks.Devices
 
             var device = new Device();
             device.Name = DeviceNameTextBox.Text;
-            device.Serial = SerialNumberTextBox.Text;
+            //device.Serial = SerialNumberTextBox.Text;
             device.UID = DeviceIdTextBox.Text;
             device.Owner = Sprocs.GetDeviceOwner(OwnerDropDown.SelectedValue);
             device.User = Sprocs.GetUserById(userID);

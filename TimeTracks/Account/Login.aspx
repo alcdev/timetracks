@@ -8,23 +8,25 @@
                 <p class="validation-summary-errors">
                     <asp:Literal runat="server" ID="FailureText" />
                 </p>
+                <asp:ValidationSummary ID="LoginUserValidationSummary" runat="server" CssClass="validation-summary-errors" DisplayMode="BulletList"
+                 ValidationGroup="LoginUserValidationGroup" ShowSummary="true"/>
                 <fieldset>
                     <legend>Log in Form</legend>
                     <ol>
                         <li>
                             <asp:Label ID="Label1" runat="server" AssociatedControlID="AccountTextBox">Account</asp:Label>
                             <asp:TextBox runat="server" ID="AccountTextBox" TextMode="Number" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="AccountTextBox" CssClass="field-validation-error" ErrorMessage="The account name field is required." />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="AccountTextBox" CssClass="field-validation-error" ErrorMessage="The account name field is required." ValidationGroup="LoginUserValidationGroup"/>
                         </li>
                         <li>
                             <asp:Label runat="server" AssociatedControlID="UsernameTextBox">User name</asp:Label>
                             <asp:TextBox runat="server" ID="UsernameTextBox" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="UsernameTextBox" CssClass="field-validation-error" ErrorMessage="The user name field is required." />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="UsernameTextBox" CssClass="field-validation-error" ErrorMessage="The user name field is required." ValidationGroup="LoginUserValidationGroup"/>
                         </li>
                         <li>
                             <asp:Label runat="server" AssociatedControlID="PasswordTextBox">Password</asp:Label>
                             <asp:TextBox runat="server" ID="PasswordTextBox" TextMode="Password" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="PasswordTextBox" CssClass="field-validation-error" ErrorMessage="The password field is required." />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="PasswordTextBox" CssClass="field-validation-error" ErrorMessage="The password field is required." ValidationGroup="LoginUserValidationGroup"/>
                         </li>
                         <li>
                             <asp:CheckBox runat="server" ID="RememberCheckBox"/>
