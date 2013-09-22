@@ -47,7 +47,7 @@ namespace TimeTracks.API
             }
 
             // Is this a valid device?
-            var device = Sprocs.GetDeviceByUid(deviceId);
+            var device = Sprocs.GetDevice(deviceId);
             if (device == null)
             {
                 Utils.JsonResponse(Response, false, new

@@ -92,6 +92,10 @@ namespace TimeTracks
 
                     }
                 }
+                else
+                {
+                    CurrentSession.Active = false;
+                }
             }
         }
 

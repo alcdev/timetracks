@@ -19,6 +19,7 @@ namespace TimeTracks.API
             var lng = Request["lng"];  // longitude
             var lat = Request["lat"];  // latitude
             var deviceId = Request["id"];  // device's GUID
+            var serial = Request["serial"]; // devices's serial.
 
             // Are we logged in?
             if (!HttpContext.Current.User.Identity.IsAuthenticated)
@@ -48,12 +49,41 @@ namespace TimeTracks.API
                 return;
             }
 
+            // Do we have a device serial?
+            if (serial == null) {
+                Utils.JsonResponse(Response, false, new
+                {
+                    error = "NO_SERIAL_SPECIFIED"
+                });
+                return;
+            }
+
             // Is this a valid device?
-            var device = Sprocs.GetDeviceByUid(deviceId);
+            var device = Sprocs.GetDevice(deviceId);
             if (device == null) {
                 Utils.JsonResponse(Response, false, new
                 {
                     error = "INVALID_DEVICE_ID"
+                });
+                return;
+            }
+
+            // See if it is the registered device.
+            if (String.IsNullOrWhiteSpace(device.Serial))
+            {
+                Utils.JsonResponse(Response, false, new
+                {
+                    error = "UREGISTERED_DEVICE"
+                });
+                return;
+            }
+
+            // See if it is the correct device.
+            if (device.Serial != serial)
+            {
+                Utils.JsonResponse(Response, false, new
+                {
+                    error = "INVALID_DEVICE_SERIAL"
                 });
                 return;
             }

@@ -112,7 +112,7 @@ namespace TimeTracks.Data
             return true;
         }
 
-        public static Device GetDeviceByUid(string deviceId)
+        public static Device GetDevice(string deviceId)
         {
             return (from d in db.Devices
                     where d.UID == deviceId
